@@ -101,7 +101,7 @@ module EventMachine::HttpDecoders
       @buf << compressed
 
       # Zlib::GzipReader loads input in 2048 byte chunks
-      if @buf.size > 2048
+      if @buf.size > 2048 * 10
         @gzip ||= Zlib::GzipReader.new @buf
         @gzip.readline
       end
